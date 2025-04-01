@@ -1,0 +1,15 @@
+lancement : 
+```
+./compteur
+```
+création de du fichier :
+```
+nasm -f elf64 -O3 compteur_minimal.asm -o compteur.o
+ld -N -s --strip-all --gc-sections -z norelro -z noseparate-code --build-id=none compteur.o -o compteur
+strip --strip-all --remove-section=.comment --remove-section=.note compteur
+```
+vérification de la taille finale du fichier : 
+```
+du -b ./compteur
+456
+```
